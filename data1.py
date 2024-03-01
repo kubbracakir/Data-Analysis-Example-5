@@ -1,0 +1,40 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+df=pd.read_csv('/Users/mac/Desktop/Python/src/datascience/data.csv')
+
+df.head(3)
+df=df.drop("Unnamed: 0",axis=1)
+df.head(15)
+df.info()
+df['Personal Finance Credit']=df['Personal Finance Credit'].str.replace(",",".")
+df['Overdraft Account']=df['Overdraft Account'].str.replace(",",".")
+df['Auto Credit']=df['Auto Credit'].str.replace(",",".")
+df['Home Credit']=df['Home Credit'].str.replace(",",".")
+df['Commercial Credit']=df['Commercial Credit'].str.replace(",",".")
+df['Commercial Credit (EUR)']=df['Commercial Credit (EUR)'].str.replace(",",".")
+df['Commercial Credit (USD)']=df['Commercial Credit (USD)'].str.replace(",",".")
+df['Consumer Credit']=df['Consumer Credit'].str.replace(",",".")
+df.head(15)
+df.info()
+df['Personal Finance Credit']=pd.to_numeric(df['Personal Finance Credit'])
+df['Overdraft Account']=pd.to_numeric(df['Overdraft Account'])
+df['Auto Credit']=pd.to_numeric(df['Auto Credit'])
+df['Home Credit']=pd.to_numeric(df['Home Credit'])
+df['Commercial Credit']=pd.to_numeric(df['Commercial Credit'])
+df['Commercial Credit (EUR)']=pd.to_numeric(df['Commercial Credit (EUR)'])
+df['Commercial Credit (USD)']=pd.to_numeric(df['Commercial Credit (USD)'])
+df['Consumer Credit']=pd.to_numeric(df['Consumer Credit'])
+
+df.info()
+df=df.head(4)
+df.tail()
+
+plt.style.use("fivethirtyeight")
+plt.figure(figsize=(16,6))
+plt.plot(df['Date'],df['Auto Credit'])
+plt.plot(df['Date'],df['Home Credit'])
+plt.legend(["Car Loan Interest","Home Loan Interest"])
+plt.title("January Car Loan and Home Loan Interest Rates for 2013")
+plt.show()
